@@ -2,26 +2,26 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
     labels:
-        app: shining-shiling-microservice
+        app: shiningshilling-microservice
         stack: frontend
         source: demo
-    name: shining-shiling-microservice
+    name: shiningshilling-microservice
     namespace: microservices
 spec:
     replicas: 3
     selector:
         matchLabels:
-            run: shining-shiling-microservice
+            run: shiningshilling-microservice
     template:
         metadata:
             labels:
-                app: shining-shiling-microservice
-                run: shining-shiling-microservice
+                app: shiningshilling-microservice
+                run: shiningshilling-microservice
                 source: demo
         spec:
             containers:
-                -   image: 702037529261.dkr.ecr.us-west-2.amazonaws.com/shining-shiling-microservice
-                    name: shining-shiling-microservice
+                -   image: 702037529261.dkr.ecr.us-west-2.amazonaws.com/shiningshilling-microservice
+                    name: shiningshilling-microservice
                     ports:
                         -   name: web
                             containerPort: 8080
@@ -31,13 +31,13 @@ kind: Service
 apiVersion: v1
 metadata:
     labels:
-        app: shining-shiling-microservice-service
-    name: shining-shiling-microservice-service
+        app: shiningshilling-microservice-service
+    name: shiningshilling-microservice-service
     namespace: microservices
 spec:
     selector:
         source: demo
-        app: shining-shiling-microservice
+        app: shiningshilling-microservice
     ports:
         -   name: web
             protocol: TCP
@@ -51,13 +51,13 @@ kind: Ingress
 metadata:
     annotations:
         nginx.ingress.kubernetes.io/rewrite-target: /$2
-    name: shining-shiling-ingress
+    name: shiningshilling-ingress
     namespace: microservices
 spec:
     rules:
         -   http:
                 paths:
-                    -   path: /shining-shiling(/|$)(.*)
+                    -   path: /shiningshilling(/|$)(.*)
                         backend:
-                            serviceName: shining-shiling-microservice-service
+                            serviceName: shiningshilling-microservice-service
                             servicePort: 30201
